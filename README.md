@@ -1,2 +1,4 @@
-# IMDb-ratings-crawler
-IMDb ratings crawler（IMDb评分爬虫）
+# IMDb ratings crawler（IMDb评分爬虫）
+可爬取IMDb评分数前10000的条目（电影，电视剧，游戏等）。
+爬取的信息有id，标题，日期，评分，评分分布等
+运行IMDb_ratings_crawler.py即可开始爬虫，爬取数据会保存到当前文件夹的
