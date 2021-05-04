@@ -1,8 +1,8 @@
-# IMDb ratings crawler（IMDb评分爬虫）
-可爬取IMDb评分数前10000的条目（包含电影，电视剧，游戏等）。
+# IMDb ratings crawler
+It can crawl the top 10,000 items (including movies, TV series, games, etc.) of IMDb ratings.
 
-爬取的信息有id，标题，日期，评分，不同评分比例，按性别年龄划分评分等。
+The crawled information includes id, title, date, rating, different rating ratios, and ratings based on gender and age, etc.
 
-运行IMDb_ratings_crawler.py即可开始爬虫，爬取数据会保存到当前文件夹的imbd_ratings.csv中。另附2021年5月3日爬取的去重后的数据（不完整）。
+Run `IMDb_ratings_crawler.py` to start crawling, and the crawl data will be saved to `imbd_ratings.csv` in the current folder. Attached is the deduplicated data crawled on May 3, 2021 (incomplete).
 
-可在config.py中配置开始结束页，每页50个条目。
+The start and end page can be configured in `config.py`(50 items per page).
