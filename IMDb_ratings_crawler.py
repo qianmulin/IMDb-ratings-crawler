@@ -23,7 +23,7 @@ def generate_ratings_list_url(list_url):
             i = 0
             for item in items:
                 header = item.select_one('.lister-item-header')
-                # 链接
+                # link
                 link = header.select_one('a')['href']                     
                 id_pattern = re.compile(r'(?<=tt)\d+(?=/?)')
                 # id
@@ -54,35 +54,35 @@ def parse_ratings(ratings_url):
             html = response.text
             soup = BeautifulSoup(html,'lxml') 
 
-            # 匹配评分
+            # match rating
             rating_pattern = re.compile(r'\d.\d') 
 
             # id
             id_pattern = re.compile(r'(tt)\d+')
             id = id_pattern.search(ratings_url).group()
 
-            # 标题
+            # title
             title = soup.select('div.parent > h3 > a')[0].get_text()
 
-            # 上映日期
+            # date
             date_text = soup.select('span.nobr')[0].get_text()
             date_pattern = re.compile(r'((?<=\()\d{4})')
             date = date_pattern.search(date_text).group()
 
-            # 加权评分
+            # weighted average
             weighted_average = soup.select('div.ipl-rating-widget > div.ipl-rating-star > span.ipl-rating-star__rating')[0].get_text()
 
-            # 算术评分
+            # arithmetic mean
             try:
                 mean_text = soup.select('div.allText > div.allText > div.allText[align=center]')[0].get_text()
             except:
                 mean_text = soup.select('div#ratings-content > div.allText')[0].get_text()
             arithmetic_mean = rating_pattern.search(mean_text).group()
 
-            # 详细评分数据
+            # rating data
             data = pd.read_html(html)
 
-            # 不同评分比例
+            # rating ratio
             rating_10 = data[0].iloc[0, 1]
             rating_9  = data[0].iloc[1, 1]
             rating_8  = data[0].iloc[2, 1]
@@ -94,7 +94,7 @@ def parse_ratings(ratings_url):
             rating_2  = data[0].iloc[8, 1]
             rating_1  = data[0].iloc[9, 1]
 
-            # 按性别，年龄分评分
+            # rating by gender and age
             all_all_ages     = parse_data(data, 1, 0, 1)
             all_18           = parse_data(data, 1, 0, 2)
             all_18_29        = parse_data(data, 1, 0, 3) 
@@ -111,7 +111,7 @@ def parse_ratings(ratings_url):
             females_30_44    = parse_data(data, 1, 2, 4) 
             females_45       = parse_data(data, 1, 2, 5) 
 
-            # 按地区分评分
+            # rating by attribute
             top_1000    = parse_data(data, 2, 0, 0)
             us_user     = parse_data(data, 2, 0, 1)
             non_us_user = parse_data(data, 2, 0, 2)
@@ -155,4 +155,4 @@ if __name__ == '__main__':
                 count += 1
              page += 1
 
-    print("爬虫完毕，共爬取"+str(count)+"个评价")
+    print("The crawler is over, a total of "+str(count)+" items were crawled")
