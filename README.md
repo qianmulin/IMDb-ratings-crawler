@@ -1,5 +1,5 @@
 # IMDb ratings crawler
-It can crawl the top 10,000 items (including movies, TV series, games, etc.) of IMDb ratings.
+It can crawl the top 10,000 items (including movies, TV series, games, etc.) of the number of IMDb ratings.
 
 The crawled information includes id, title, date, rating, different rating ratios, and ratings based on gender and age, etc.
 
